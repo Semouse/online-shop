@@ -12,7 +12,6 @@ Main menu consists of the next items:
 - My Orders
 - Settings
 - Customer List
-
 When User is logged in, then paragraph 2 label is changed to “Sign Out” instead of Sign In.
 
 **Scenario - stop the program**  
