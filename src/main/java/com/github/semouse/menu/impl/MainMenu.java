@@ -1,9 +1,9 @@
-package com.github.semouse.menu;
+package com.github.semouse.menu.impl;
 
 import com.github.semouse.config.ApplicationContext;
 import java.util.Scanner;
 
-public class Menu {
+public class MainMenu implements Menu {
 
     private final ApplicationContext context = ApplicationContext.getInstance();
 
@@ -19,7 +19,8 @@ public class Menu {
     private static final String MAIN_MENU_LOGGED_IN = String.format(MAIN_MENU, "2. Sign Out");
     private static final String MAIN_MENU_LOGGED_OUT = String.format(MAIN_MENU, "2. Sign In");
 
-    public void start() {
+    @Override
+    public void init() {
         while (true) {
             printMenu();
 
@@ -43,10 +44,9 @@ public class Menu {
                     case "4" -> System.out.println("My orders stub");
                     case "5" -> System.out.println("Setting stub");
                     case "6" -> System.out.println("Customer list stub");
-                    default ->
-                        System.out.println("Only 1, 2, 3, 4, 5, 6 commands is allowed. Try one more time.");
+                    default -> System.out.println(
+                        "Only 1, 2, 3, 4, 5, 6 commands is allowed. Try one more time.");
                 }
-
             }
         }
     }
