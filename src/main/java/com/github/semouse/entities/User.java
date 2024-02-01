@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class User {
 
+    private static int counter = 0;
     private int id;
     private String firstName;
     private String lastName;
@@ -11,6 +12,14 @@ public class User {
     private String email;
 
     public User() {
+    }
+
+    public User(String firstName, String lastName, String password, String email) {
+        this.id = counter++;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+        this.email = email;
     }
 
     public User(int id, String firstName, String lastName, String password, String email) {
@@ -58,5 +67,9 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hash(id, firstName, lastName, password, email);
+    }
+
+    public static void setCounter(int counter) {
+        User.counter = counter;
     }
 }

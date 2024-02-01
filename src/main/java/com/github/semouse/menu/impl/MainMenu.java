@@ -32,7 +32,7 @@ public class MainMenu implements Menu {
                 break;
             } else {
                 switch (command) {
-                    case "1" -> System.out.println("Sign up stub");
+                    case "1" -> context.getSignUpMenu().init();
                     case "2" -> {
                         if (context.getUser() == null) {
                             System.out.println("Sign in stub");

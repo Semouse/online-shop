@@ -9,6 +9,7 @@ import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.Collections;
 import java.util.List;
+import java.util.OptionalInt;
 
 public class FileUserStorageService implements UserStorageService {
 
@@ -33,12 +34,14 @@ public class FileUserStorageService implements UserStorageService {
     @Override
     public List<User> loadUsers() {
         try (var stream = Files.lines(storage)) {
-            return stream.filter(line -> !line.isEmpty()).map(this::convertStringToUser).toList();
+            List<User> users = stream.filter(line -> !line.isEmpty()).map(this::convertStringToUser)
+                .toList();
+            OptionalInt maxId = users.stream().mapToInt(User::getId).max();
+            User.setCounter(maxId.orElse(0));
+            return users;
         } catch (IOException e) {
-            e.printStackTrace();
+            return Collections.emptyList();
         }
-
-        return Collections.emptyList();
     }
 
     private String convertUserToCSVFormat(User user) {
