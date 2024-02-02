@@ -31,6 +31,5 @@ public class SignUpMenu implements Menu {
 
         System.out.println("New user is created");
         context.setUser(user);
-        context.getMainMenu().init();
     }
 }
